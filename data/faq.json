@@ -1,0 +1,27 @@
+{
+  "1": {
+    "question": "How many customers do I have?",
+    "answer": "You can view your total customer count in the 'Customer Overview' dashboard. As of the last sync, you have 1,245 active customers.",
+    "topic": "Metrics"
+  },
+  "2": {
+    "question": "How many products do I have?",
+    "answer": "The total product count is available in the Inventory section. Currently, there are 350 unique products listed.",
+    "topic": "Inventory"
+  },
+  "3": {
+    "question": "How do I reset my password?",
+    "answer": "To reset your password, go to Settings > Security and click on 'Reset Password'. You will receive an email with instructions.",
+    "topic": "Account"
+  },
+  "4": {
+    "question": "Where can I find sales reports?",
+    "answer": "Sales reports are located under the 'Reports' tab. You can filter by date range and export them as PDF or CSV.",
+    "topic": "Reporting"
+  },
+  "5": {
+    "question": "How to contact support?",
+    "answer": "You can contact support via the chat widget in the bottom right corner or email us at support@example.com.",
+    "topic": "Support"
+  }
+}

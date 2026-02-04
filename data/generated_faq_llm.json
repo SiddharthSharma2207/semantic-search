@@ -1,0 +1,152 @@
+[
+  {
+    "question": "How many customers do I currently serve?",
+    "query_id": "1",
+    "topic": "Metrics"
+  },
+  {
+    "question": "How many customers are currently in my database?",
+    "query_id": "1",
+    "topic": "Metrics"
+  },
+  {
+    "question": "Can you tell me the count of my customers?",
+    "query_id": "1",
+    "topic": "Metrics"
+  },
+  {
+    "question": "What is the total number of customers I have?",
+    "query_id": "1",
+    "topic": "Metrics"
+  },
+  {
+    "question": "How many customers do I have?",
+    "query_id": "1",
+    "topic": "Metrics"
+  },
+  {
+    "question": "What is the customer count for my business?",
+    "query_id": "1",
+    "topic": "Metrics"
+  },
+  {
+    "question": "Could you give me the total number of products I own?",
+    "query_id": "2",
+    "topic": "Inventory"
+  },
+  {
+    "question": "What is the total count of products in my inventory?",
+    "query_id": "2",
+    "topic": "Inventory"
+  },
+  {
+    "question": "Can you tell me how many items I currently have?",
+    "query_id": "2",
+    "topic": "Inventory"
+  },
+  {
+    "question": "What's the quantity of products I possess?",
+    "query_id": "2",
+    "topic": "Inventory"
+  },
+  {
+    "question": "How many products do I have?",
+    "query_id": "2",
+    "topic": "Inventory"
+  },
+  {
+    "question": "How many products are listed in my stock?",
+    "query_id": "2",
+    "topic": "Inventory"
+  },
+  {
+    "question": "How can I change my password to a new one?",
+    "query_id": "3",
+    "topic": "Account"
+  },
+  {
+    "question": "Can you guide me through resetting my password?",
+    "query_id": "3",
+    "topic": "Account"
+  },
+  {
+    "question": "If I forget my password, how do I restore access?",
+    "query_id": "3",
+    "topic": "Account"
+  },
+  {
+    "question": "What is the process for resetting my account password?",
+    "query_id": "3",
+    "topic": "Account"
+  },
+  {
+    "question": "How do I reset my password?",
+    "query_id": "3",
+    "topic": "Account"
+  },
+  {
+    "question": "What steps should I take to reset my password?",
+    "query_id": "3",
+    "topic": "Account"
+  },
+  {
+    "question": "Where do I go to view the sales reports?",
+    "query_id": "4",
+    "topic": "Reporting"
+  },
+  {
+    "question": "Can you tell me where the sales reports are located?",
+    "query_id": "4",
+    "topic": "Reporting"
+  },
+  {
+    "question": "Where might I find the sales report documents?",
+    "query_id": "4",
+    "topic": "Reporting"
+  },
+  {
+    "question": "Which location contains the sales reports?",
+    "query_id": "4",
+    "topic": "Reporting"
+  },
+  {
+    "question": "Where can I find sales reports?",
+    "query_id": "4",
+    "topic": "Reporting"
+  },
+  {
+    "question": "Where can I access the sales reports?",
+    "query_id": "4",
+    "topic": "Reporting"
+  },
+  {
+    "question": "What\u2019s the best way to get in touch with support?",
+    "query_id": "5",
+    "topic": "Support"
+  },
+  {
+    "question": "How do I get support assistance?",
+    "query_id": "5",
+    "topic": "Support"
+  },
+  {
+    "question": "How to contact support?",
+    "query_id": "5",
+    "topic": "Support"
+  },
+  {
+    "question": "What steps should I follow to contact support?",
+    "query_id": "5",
+    "topic": "Support"
+  },
+  {
+    "question": "How can I reach out to the support team?",
+    "query_id": "5",
+    "topic": "Support"
+  },
+  {
+    "question": "What\u2019s the procedure for contacting support?",
+    "query_id": "5",
+    "topic": "Support"
+  }
+]
