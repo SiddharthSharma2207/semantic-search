@@ -1,6 +1,6 @@
-# Climba - Semantic FAQ Search Engine
+# Semantic FAQ Search Engine
 
-Climba is a semantic search engine designed for FAQ sections. It leverages Large Language Models (LLMs) to generate question variations and uses Vector Database (ChromaDB) for efficient semantic retrieval.
+A semantic search engine designed for FAQ sections. It leverages Large Language Models (LLMs) to generate question variations and uses Vector Database (ChromaDB) for efficient semantic retrieval.
 
 ## Features
 
@@ -21,7 +21,7 @@ Climba is a semantic search engine designed for FAQ sections. It leverages Large
 
 1.  **Clone the repository:**
     ```bash
-    git clone <repository_url>
+    git clone https://github.com/SiddharthSharma2207/semantic-search.git
     cd climba
     ```
 

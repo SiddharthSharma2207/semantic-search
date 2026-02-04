@@ -25,8 +25,8 @@ def engine():
 def test_search(engine, query, expected):
     search_result = engine.search(query=query)
 
-    faq_question = search_result["original_question"]
-    similarity = search_result["similarity"]
+    faq_question = search_result.original_question
+    similarity = search_result.similarity
 
     print(f"\nquery ('{query}' matched with '{faq_question}'): {similarity:.4f}")
 

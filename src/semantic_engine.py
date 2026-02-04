@@ -1,10 +1,10 @@
 import json
+from typing import List, Optional, Union
 
 import chromadb
-from chromadb.config import Settings
 import spacy
-from typing import List, Dict, Any, Optional
-import numpy as np
+
+from models.search_result import SearchResult
 
 
 class SemanticEngine:
@@ -26,20 +26,23 @@ class SemanticEngine:
             download("en_core_web_sm")
             self.nlp = spacy.load("en_core_web_sm")
 
-    def extract_keywords(self, text: str) -> List[str]:
+    def extract_keywords(self, text: str) -> Union[List[str], None]:
         """
         Extract key terms from the query for pre-filtering.
         Removes stop words and keeps nouns/verbs/adjs usually.
         """
-        doc = self.nlp(text.lower())
-        keywords = [
-            token.text for token in doc
-            if not token.is_stop and token.is_alpha and len(token.text) > 2
-        ]
-        return list(set(keywords))
+        try:
+            doc = self.nlp(text.lower())
+            keywords = [
+                token.text for token in doc
+                if not token.is_stop and token.is_alpha and len(token.text) > 2
+            ]
+            return list(set(keywords))
+        except Exception as e:
+            print(f"Error occurred while extracting keywords: {e} ")
+            return None
 
-
-    def search(self, query: str, n_results: int = 5) -> Optional[Dict[str, Any]]:
+    def search(self, query: str, n_results: int = 5) -> Optional[SearchResult]:
         """
         Perform the hybrid search:
         1. Extract Keywords
@@ -91,16 +94,12 @@ class SemanticEngine:
         best_dist = results["distances"][0][0]
         query_id = best_meta["query_id"]
 
-        # Note: Chroma default is cosine distance (lower is better, 0 is identical)
-        # However, we often want similarity.
-        # Distance range for cosine is 0 to 2.
 
-        return {
-            "answer": self.faq[query_id]["answer"],
-            "topic": best_meta["topic"],
-            "matched_question": best_doc,
-            "original_question": self.faq[query_id]["question"],
-            "query_id":query_id,
-            "distance": best_dist,
-            "similarity": 1.0 - best_dist  # Approximation for cosine distance
-        }
+        return SearchResult(answer=self.faq[query_id]["answer"],
+                            topic=best_meta["topic"],
+                            matched_question=best_doc,
+                            original_question=self.faq[query_id]["question"],
+                            query_id=query_id,
+                            distance=best_dist,
+                            similarity=1.0 - best_dist
+                            )

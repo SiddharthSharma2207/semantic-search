@@ -21,4 +21,4 @@ if __name__=="__main__":
     result=search_engine.search(query=args.query,n_results=5)
 
     if result:
-        print(f'Answer:\n{result["answer"]}')
+        print(f'Answer:\n{result.answer}')
