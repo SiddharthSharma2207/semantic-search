@@ -12,20 +12,20 @@ search_engine=SemanticEngine(faq_json_path="data/faq.json",
 
 
 if __name__=="__main__":
-    # parser = argparse.ArgumentParser(description="Search FAQ section")
-    #
-    # parser.add_argument("--query", type=str, help="User query")
-    #
-    # args = parser.parse_args()
+    parser = argparse.ArgumentParser(description="Search FAQ section")
 
-    # print("Searching FAQ section....\n")
-    # result=search_engine.search(query=args.query,n_results=5)
-    #
-    # if result:
-    #     print(f'Answer:\n{result.answer}')
-    text_1="How may customer do I have?"
-    text_2="How many products do I have"
-    text_3="My customer count"
+    parser.add_argument("--query", type=str, help="User query")
 
-    result= search_engine.semantic_similarity(text_1,text_2,semantic_boost=0.65,keyword_boost=0.98)
-    print(f"Similarity: {result}")
+    args = parser.parse_args()
+
+    print("Searching FAQ section....\n")
+    result=search_engine.search(query=args.query,n_results=5)
+
+    if result:
+        print(f'Answer:\n{result.answer}')
+    # text_1="How may customer do I have?"
+    # text_2="How many products do I have"
+    # text_3="My customer count"
+    #
+    # result= search_engine.semantic_similarity(text_1,text_2,semantic_boost=0.65,keyword_boost=0.98)
+    # print(f"Similarity: {result}")
