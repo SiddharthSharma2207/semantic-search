@@ -32,16 +32,21 @@ def test_search(engine, query, expected):
 
     assert faq_question == expected
 
-# def test_similarity_distant_match(engine):
-#     """
-#     Test that semantically different sentences have low similarity (<0.50).
-#     Example: "How may customer do I have" => "How many products do I have"
-#     """
-#     text_a = "How may customer do I have"
-#     text_b = "How many products do I have"
-#
-#     similarity = engine.semantic_similarity(text_a, text_b)
-#     print(f"\nSimilarity ('{text_a}' vs '{text_b}'): {similarity:.4f}")
-#
-#     assert similarity < 0.60, "Similarity should be lower for different topics"
-#
+def test_similarity_close_match(engine):
+    text_a = "How many customer do I have"
+    text_b = "My customer count"
+
+    similarity = engine.semantic_similarity(text_a, text_b,semantic_boost=0.65,keyword_boost=0.98)
+    print(f"\nSimilarity ('{text_a}' vs '{text_b}'): {similarity:.4f}")
+
+    assert similarity > 0.95, "Similarity should be high for similar topics"
+
+def test_similarity_distant_match(engine):
+
+    text_a = "How may customer do I have"
+    text_b = "How many products do I have"
+
+    similarity = engine.semantic_similarity(text_a, text_b,semantic_boost=0.65,keyword_boost=0.98)
+    print(f"\nSimilarity ('{text_a}' vs '{text_b}'): {similarity:.4f}")
+
+    assert similarity < 0.60, "Similarity should be lower for different topics"

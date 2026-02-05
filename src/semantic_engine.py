@@ -2,8 +2,11 @@ import json
 from typing import List, Optional, Union
 
 import chromadb
+import numpy as np
 import spacy
+from chromadb.utils.embedding_functions import DefaultEmbeddingFunction
 from spacy.cli import download
+
 from models.search_result import SearchResult
 
 
@@ -41,6 +44,44 @@ class SemanticEngine:
             print(f"Error occurred while extracting keywords: {e} ")
             return None
 
+    def semantic_similarity(self, text_a: str, text_b: str, keyword_boost: float = 0.95,
+                            semantic_boost: float = 0.6) -> float:
+        """
+        Hybrid similarity: keyword overlap + semantic similarity.
+        semantic_boost: Increasing it will increase weightage for semantic match
+        keyword_boost: Increasing it will increase weightage for keyword match
+        """
+
+        # --- 1) Keyword Overlap Score ---
+        # simple normalized overlap of non-stop words
+        ka = set(self.extract_keywords(text_a) or [])
+        kb = set(self.extract_keywords(text_b) or [])
+        if not ka and not kb:
+            keyword_score = 0.0
+        else:
+            intersect = len(ka.intersection(kb))
+            union = len(ka.union(kb))
+            keyword_score = intersect / union
+
+        # --- 2) Semantic Cosine Similarity ---
+        embedding_fn = DefaultEmbeddingFunction()
+
+        emb_a = embedding_fn([text_a])[0]
+        emb_b = embedding_fn([text_b])[0]
+        va = np.array(emb_a, dtype=float)
+        vb = np.array(emb_b, dtype=float)
+        na, nb = np.linalg.norm(va), np.linalg.norm(vb)
+
+        if na == 0 or nb == 0:
+            semantic_score = 0.0
+        else:
+            semantic_score = float(np.dot(va, vb) / (na * nb))
+
+        final_score = semantic_boost * semantic_score + keyword_boost * keyword_score
+
+        # clip to [0,1]
+        return max(0.0, min(1.0, final_score))
+
     def search(self, query: str, n_results: int = 5) -> Optional[SearchResult]:
         """
         Perform the hybrid search:
@@ -70,7 +111,6 @@ class SemanticEngine:
                 where_document=where_filter
             )
 
-
             if not results["ids"] or len(results["ids"][0]) == 0:
                 print(f"Search failed with filter {where_filter}")
                 # Fallback to searching without filters
@@ -84,7 +124,6 @@ class SemanticEngine:
             best_meta = results["metadatas"][0][0]
             best_dist = results["distances"][0][0]
             query_id = best_meta["query_id"]
-
 
             return SearchResult(answer=self.faq[query_id]["answer"],
                                 topic=best_meta["topic"],
